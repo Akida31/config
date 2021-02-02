@@ -1,0 +1,9 @@
+{
+    "rust-analyzer.serverPath": "~/.cargo/bin/rust-analyzer",
+    "rust-analyzer.enableCargoWatchOnStartup": "disabled",
+    "rust-analyzer.diagnostic.enable": true,
+    "rust-analyzer.inlayHints.parameterHints": true,
+    "rust-analyzer.inlayHints.chainingHints": true,
+    "rust-analyzer.inlayHints.typeHints": true,
+    "typescript.format.enabled": true
+}

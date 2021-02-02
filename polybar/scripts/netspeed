@@ -1,0 +1,7 @@
+#!/bin/env python
+f = open("/proc/net/dev")
+for line in f.readlines():
+    if line.startswith("wlp"):
+        s = line.split()
+        print(f"{s[1]} {s[9]}")
+f.close()

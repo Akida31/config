@@ -1,0 +1,324 @@
+[colors]
+background = #00000000
+foreground = #ffffff
+
+background-alt = #000000
+foreground-alt = #ffffff
+
+primary = #f4e216
+primary2 = #ad5503
+secondary = #52fc14
+alert = #bd2c40
+
+cpu = #2a4dea
+temp = #2aadea
+ram = #2aeaea
+network = #acf91b
+
+[bar/second]
+monitor = HDMI-1
+inherit = bar/main_long
+height = 30
+
+font-0 = Roboto-Regular.ttf: Roboto:style=Regular:size=10
+font-1 = misc fixed:pixelsize=8;1
+font-2 = unifont:fontformat=truetype:size=6:antialias=false;0
+font-3 = siji:pixelsize=8;1
+font-4 = Font Awesome 5 Free,Font Awesome 5 Free Solid:style=Solid
+font-5 = Font Awesome 5 Brands,Font Awesome 5 Brands Regular:style=Regular
+font-6 = Ubuntu Condensed:size=8;2
+
+[bar/main]
+monitor = eDP-1
+width = 100%
+height = 35
+background = ${colors.background}
+foreground = ${colors.foreground}
+line-size = 3
+line-color = #f00
+
+padding-left = 0
+padding-right = 2
+
+module-margin-left = 1
+module-margin-right = 2
+
+font-0 = Roboto-Regular.ttf: Roboto:style=Regular:size=13
+font-1 = misc fixed:pixelsize=10;1
+font-2 = unifont:fontformat=truetype:size=8:antialias=false;0
+font-3 = siji:pixelsize=10;1
+font-4 = Font Awesome 5 Free,Font Awesome 5 Free Solid:style=Solid
+font-5 = Font Awesome 5 Brands,Font Awesome 5 Brands Regular:style=Regular
+font-6 = Ubuntu Condensed:size=10;2
+font-7 = icomoon-feather:size=10;2
+
+modules-left = i3
+modules-right = pulseaudio battery powermenu date
+
+tray-position = right
+tray-padding = 2
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+
+[bar/main_long]
+monitor = eDP-1
+width = 100%
+height = 35
+background = ${colors.background}
+foreground = ${colors.foreground}
+line-size = 3
+line-color = #f00
+
+padding-left = 0
+padding-right = 2
+
+module-margin-left = 1
+module-margin-right = 2
+
+font-0 = Roboto-Regular.ttf: Roboto:style=Regular:size=13
+font-1 = misc fixed:pixelsize=10;1
+font-2 = unifont:fontformat=truetype:size=8:antialias=false;0
+font-3 = siji:pixelsize=10;1
+font-4 = Font Awesome 5 Free,Font Awesome 5 Free Solid:style=Solid
+font-5 = Font Awesome 5 Brands,Font Awesome 5 Brands Regular:style=Regular
+font-6 = Ubuntu Condensed:size=10;2
+font-7 = icomoon-feather:size=10;2
+
+modules-left = i3
+modules-center = wifispeeddown wifispeedup cpu temperature memory 
+modules-right = pulseaudio wifi battery powermenu date
+
+tray-position = right
+tray-padding = 2
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+index-sort = true
+wrapping-scroll = false
+
+label-active-font = 4
+
+; Only show workspaces on the same output as the bar
+;pin-workspaces = true
+
+label-mode-padding = 2
+label-mode-foreground = #000
+label-mode-background = ${colors.primary}
+
+; focused = Active workspace on focused monitor
+label-focused = %name%
+;label-focused-background = ${colors.background-alt}
+label-focused-underline = ${colors.primary}
+label-focused-padding = 2
+
+; unfocused = Inactive workspace on any monitor
+label-unfocused = %name%
+label-unfocused-padding = 2
+
+; visible = Active workspace on unfocused monitor
+label-visible = %index%
+;label-visible-background = ${self.label-focused-background}
+label-visible-underline = ${colors.primary2}
+label-visible-padding = ${self.label-focused-padding}
+
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-suffix = "  "
+format-prefix-foreground = ${colors.foreground-alt}
+label = %percentage:2%%
+click-left = st htop
+
+[module/pulseaudio]
+type = internal/pulseaudio
+interval=5
+label-volume = " %percentage%%"
+label-muted = ""
+click-right = pavucontrol
+
+[module/memory]
+type = internal/memory
+interval = 2
+format-suffix = "  "
+format-prefix-foreground = ${colors.foreground-alt}
+label = %percentage_used%%
+;label = %mb_used%
+click-left = xfce4-terminal
+
+
+[module/wifi]
+type = internal/network
+interface = wlp3s0
+interval = 1.0
+format-connected =  <ramp-signal>
+
+format-disconnected = 
+;format-disconnected = <label-disconnected>
+;format-disconnected-underline = ${self.format-connected-underline}
+;label-disconnected = %ifname% disconnected
+;label-disconnected-foreground = ${colors.foreground-alt}
+ 
+ramp-signal-0 = 
+; ramp-signal-foreground = ${colors.foreground-alt}
+
+[module/wifispeeddown]
+type = internal/network
+interface = wlp3s0
+label-connected ="%downspeed:7%"
+format-connected = <label-connected>
+format-connected-prefix = " "
+format-connected-prefix-foreground = #3EC13F
+format-connected-foreground = ${colors.foreground}
+interval = 5
+
+[module/wifispeedup]
+type = internal/network
+interface = wlp3s0
+label-connected ="%upspeed:7%"
+format-connected = <label-connected>
+format-connected-prefix = " "
+format-connected-prefix-foreground = #FE522C
+format-connected-foreground = ${colors.foreground}
+format-connected-background = ${colors.background}
+interval = 5
+
+[module/date]
+type = internal/date
+interval = 5
+
+date =
+date-alt = " %Y-%m-%d"
+
+time = %H:%M
+time-alt = %H:%M:%S
+
+format-suffix = "  " 
+format-prefix-foreground = ${colors.foreground-alt}
+
+label = %date% %time%
+
+
+[module/battery]
+type = internal/battery
+
+full-at = 98
+
+battery = BAT1
+adapter = ACAD
+
+poll-interval = 2
+time-format = %H:%M
+
+
+format-charging = <animation-charging>
+format-charging-background = ${colors.background}
+format-charging-foreground = ${colors.foreground}
+format-charging-padding = 2
+
+format-discharging = <animation-discharging> <label-discharging>
+format-discharging-background = ${colors.background}
+format-discharging-foreground = ${colors.foreground}
+format-discharging-padding = 2
+
+
+label-charging = %percentage%%
+label-discharging = %percentage%%
+
+format-full = <bar-capacity>
+format-full-foreground = ${colors.foreground}
+format-full-background = ${colors.background}
+format-full-padding = 2
+
+bar-capacity-width = 1
+bar-capacity-empty = 0
+bar-capacity-fill = #1bf9e3
+bar-capacity-indicator = 
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+; Framerate in milliseconds
+animation-charging-framerate = 750
+
+; Only applies if <animation-discharging> is used
+animation-discharging-0 = 
+animation-discharging-1 = 
+animation-discharging-2 = 
+animation-discharging-3 = 
+animation-discharging-4 = 
+; Framerate in milliseconds
+animation-discharging-framerate = 500
+
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 60
+
+format = <label>  <ramp>
+format-warn = <ramp> <label-warn>
+format-warn-underline = ${colors.alert}
+
+label = %temperature-c%
+label-warn = %temperature-c%
+label-warn-foreground = ${colors.primary} 
+
+ramp-0 = 
+ramp-foreground = ${colors.foreground-alt}
+
+[module/powermenu]
+type = custom/menu
+
+expand-right = true
+
+format-spacing = 1
+
+label-open = 
+label-open-foreground = ${colors.primary2}
+label-close =  cancel
+label-close-foreground = ${colors.primary2}
+label-separator = |
+label-separator-foreground = ${colors.foreground-alt}
+
+menu-0-0 = reboot
+menu-0-0-exec = menu-open-1
+menu-0-1 = power off
+menu-0-1-exec = menu-open-2
+menu-0-2 = lock
+menu-0-2-exec = menu-open-3
+
+menu-1-0 = cancel
+menu-1-0-exec = menu-open-0
+menu-1-1 = reboot
+menu-1-1-exec = reboot
+
+menu-2-0 = power off
+menu-2-0-exec = poweroff
+menu-2-1 = cancel
+menu-2-1-exec = menu-open-0
+
+menu-3-0 = lock
+menu-3-0-exec = dm-tool-lock
+menu-3-1 = cancel
+menu-3-1-exec = menu-open-0
+
+
+[settings]
+screenchange-reload = true
+;compositing-background = xor
+;compositing-background = screen
+;compositing-foreground = source
+;compositing-border = over
+;pseudo-transparency = false
+
+[global/wm]
+;margin-top = 5
+;margin-bottom = 5
+
+; vim:ft=dosini
