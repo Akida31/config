@@ -50,5 +50,18 @@ set updatetime=300 " You will have bad experience for diagnostic messages when i
 set autoread
 
 " Permanent undo
-set undodir=~/.vimdid
+set undodir=~/.cache/vim/undo
 set undofile
+
+" Autocmd Rules
+" The PC is fast enough, do syntax highlight syncing from start unless 200 lines
+augroup vimrc-sync-fromstart
+  autocmd!
+  autocmd BufEnter * :syntax sync maxlines=200
+augroup END
+
+" Remember cursor position
+augroup vimrc-remember-cursor-position
+  autocmd!
+  autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+augroup END

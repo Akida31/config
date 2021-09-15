@@ -1,9 +1,5 @@
 # Configuration for neovim by Akida
 
-## Installation
-### CoC 
-`:CocInstall` the following: coc-snippets, coc-json, coc-html, coc-vetur, coc-python, coc-vimtex, coc-rust-analyzer, coc-tsserver, coc-eslint
-
 ## Mappings
 
 ### General
@@ -24,17 +20,17 @@
 `<leader>f`: find in path
 
 ### CoC
-`[g` and `]g`: navigate diagnostics
+`<leader>e` and `<leader>E`: navigate diagnostics
 `gd`: go to definition
-`gy`: go to type definition
 `gi`: go to implementation
 `gr`: go to references
-`K`: show documentation in preview window
+`K`: show documentation 
 `rn`: rename symbol
-`<leader>s`: find symbol of current document
-`<leader>S`: search workspace symbols
-`<leader>a`: show available actions at this location
-`<leader>c`: multiple cursors at position
+`<leader>wa`: add workspace folder
+`<leader>wr`: remove workspace folder
+`<leader>wl`: list workspace folder
+`<leader>p`: show available actions at this location
+`<leader>dg`: show line diagnostics
 `<leader>l`: format file
 
 ### LaTeX

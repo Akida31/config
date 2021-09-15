@@ -14,6 +14,12 @@ cnoreabbrev Qall qall
 nnoremap n nzzzv
 nnoremap N Nzzzv
 
+" move visual lines when wrapped
+nnoremap k gk
+nnoremap j gj
+vnoremap k gk
+vnoremap j gj
+
 " NERDTree
 nnoremap <silent> <F3> :NERDTreeToggle<CR>
 
@@ -76,3 +82,15 @@ command! -bang -nargs=* Rg
 nnoremap <leader>tc :VimtexCompile<CR>
 nnoremap <leader>ts :VimtexStopAll<CR>
 nnoremap <leader>tf :VimtexTocToggle<CR>
+
+" remove trailing whitespaces
+command! FixWhitespace :%s/\s\+$//e
+
+" count words
+command! Wc :!wc %
+
+" enable german spell checking
+command! Spell :setlocal spell spelllang=de_de
+
+" enable soft wrapping
+command! Wrap :setlocal wrap linebreak nolist
